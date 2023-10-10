@@ -1,0 +1,31 @@
+name: Sync Repository
+
+on:
+  push:
+    branches:
+      - main  # Replace with your source branch name
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v2
+
+      - name: Configure Git
+        run: |
+          git config user.name "Abhishek"
+          git config user.email "abhishek.kumar3@xebia.com"
+          git remote add target https://github.com/xi3768-akumar/targetrepository.git
+
+      - name: Sync with Target Repository
+        run: |
+          git fetch target main --no-recurse-submodules
+          git checkout main  # Change to your source branch name if different
+          git merge --no-edit FETCH_HEAD
+          git push https://test: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@github.com/xi3768-akumar/targetrepository.git HEAD:main
+
+      - name: Cleanup
+        run: |
+          git remote remove target
