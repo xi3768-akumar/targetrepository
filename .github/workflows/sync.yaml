@@ -23,8 +23,8 @@ jobs:
         run: |
           git fetch target main --no-recurse-submodules
           git checkout main  # Change to your source branch name if different
-          git merge --no-edit FETCH_HEAD
-          git push https://test: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@github.com/xi3768-akumar/targetrepository.git HEAD:main
+          git merge --no-edit FETCH_HEAD --ff
+          git push https://abhishek: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@github.com/xi3768-akumar/targetrepository.git HEAD:main
 
       - name: Cleanup
         run: |
